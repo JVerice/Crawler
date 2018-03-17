@@ -21,12 +21,15 @@ public class ValveTest {
 	public static void main(String[] args) throws Exception {
 		long currentTimeMillis = System.currentTimeMillis();
 		// 地址
-		String url1 = "https://book.douban.com/tag/%E7%BC%96%E7%A8%8B?start=0&type=S";
-		String url2 = "https://book.douban.com/tag/%E7%BC%96%E7%A8%8B?start=20&type=S";
+		int page=0;
+		String url = "https://book.douban.com/tag/%E7%BC%96%E7%A8%8B?start=";
+		String url2 = "&type=S";
 		// 抓取的数据
 		List<Valve> bookDatas = new ArrayList<Valve>();
-		bookDatas=getBookDatas(url1,bookDatas);
-		bookDatas=getBookDatas(url2,bookDatas);
+		while (bookDatas.size()<=40) {
+			bookDatas=getBookDatas(url+String.valueOf(page*20)+url2,bookDatas);
+			page++;
+		}
 		// 按评分排序
 		Comparator<Valve> comparator = new Comparator<Valve>() {
 			public int compare(Valve v1, Valve v2) {

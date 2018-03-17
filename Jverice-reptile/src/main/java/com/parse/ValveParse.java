@@ -46,7 +46,8 @@ public class ValveParse {
 	            valve.setPrice(arr[3]);
             }
             //将每一个对象的值，保存到List集合中
-            bookDatas.add(valve);
+            if(Integer.parseInt(valve.getNumber())>1000)
+            	bookDatas.add(valve);
         }
         //返回数据
         return bookDatas;
